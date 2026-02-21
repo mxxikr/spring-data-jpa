@@ -9,16 +9,16 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Member {
+public class MemberOld {
     @Id @GeneratedValue
     private Long id;
     private String username;
 
-    public Member(String username) {
+    public MemberOld(String username) {
 
     }
 
-    protected Member() {
+    protected MemberOld() {
 
     }
 }

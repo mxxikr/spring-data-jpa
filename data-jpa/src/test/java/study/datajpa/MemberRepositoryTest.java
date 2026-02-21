@@ -7,7 +7,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
@@ -18,10 +17,10 @@ class MemberRepositoryTest {
 
     @Test
     public void testMember() {
-        Member member = new Member("memberA");
-        Member savedMember = memberRepository.save(member);
+        MemberOld member = new MemberOld("memberA");
+        MemberOld savedMember = memberRepository.save(member);
 
-        Member findMember = memberRepository.findById(savedMember.getId()).get();
+        MemberOld findMember = memberRepository.findById(savedMember.getId()).get();
 
         assertThat(findMember.getId()).isEqualTo(member.getId());
         assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
