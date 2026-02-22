@@ -1,5 +1,9 @@
 package study.datajpa.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +17,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     List<Member> findByUsernameAndAgeGreaterThan(String username, int age);
 
     //    @Query(name = "Member.findByUsrname")
-    List<Member> findByUsername(@Param("username") String username);
+//    List<Member> findByUsername(@Param("username") String username);
 
     @Query("select m from Member m where m.username= :username and m.age = :age")
     List<Member> findUser(@Param("username") String username, @Param("age") int age);
@@ -30,4 +34,14 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("select m from Member m where m.username in :name")
     List<Member> findByNames(@Param("name") List<String> names);
 
+    Page<Member> findByUsername(String name, Pageable pageable); // count 쿼리 사용 안함
+//    Slice<Member> findByUsername(String name, Pageable pageable); // count 쿼리 사용 안함
+//    List<Member> findByUsername(String name, Pageable pageable); // count 쿼리 사용 안함
+
+    List<Member> findByUsername(String name, Sort sort);
+
+    Page<Member> findByAge(int age, Pageable pageable);
+
+    @Query(value = "select m from Member m", countQuery = "select count(m.username) from Member m")
+    Page<Member> findMemberAllCountBy(Pageable pageable);
 }
