@@ -11,7 +11,7 @@ import java.util.List;
 public interface MemberRepository extends JpaRepository<Member, Long> {
     List<Member> findByUsernameAndAgeGreaterThan(String username, int age);
 
-//    @Query(name = "Member.findByUsrname")
+    //    @Query(name = "Member.findByUsrname")
     List<Member> findByUsername(@Param("username") String username);
 
     @Query("select m from Member m where m.username= :username and m.age = :age")
@@ -22,4 +22,10 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     @Query("select new study.datajpa.dto.MemberDto(m.id, m.username, t.name) " + "from Member m join m.team t")
     List<MemberDto> findMemberDto();
+
+    @Query("select m from Member m where m.username = :name")
+    Member findMembers(@Param("name") String username);
+
+    @Query("select m from Member m where m.username in :name")
+    List<Member> findByNames(@Param("name") List<String> names);
 }
