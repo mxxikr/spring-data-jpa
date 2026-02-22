@@ -1,5 +1,6 @@
 package study.datajpa;
 
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MemberRepositoryTest {
     @Autowired
     MemberRepository memberRepository;
+    private EntityManager em;
 
     @Test
     public void testMember() {
@@ -78,7 +80,7 @@ class MemberRepositoryTest {
         // when
         PageRequest pageRequest = PageRequest.of(0, 3,  Sort.by(Sort.Direction.DESC, "username"));
         Page<Member> page = memberRepository.findByAge(10, pageRequest);
-        Page<MemberDto> dtoPage = page.map(m -> new MemberDto());
+        Page<MemberDto> dtoPage = page.map(m -> new MemberDto(m.getId(), m.getUsername(), null));
 
         // then
         List<Member> content = page.getContent(); // 조회된 데이터
@@ -101,6 +103,13 @@ class MemberRepositoryTest {
 
         //when
         int resultCount = memberRepository.bulkAgePlus(20);
+
+//        em.flush();
+//        em.clear();
+
+        List<Member> result = memberRepository.findByUsername("member5");
+        Member member5 = result.get(0);
+        System.out.println("member5 = " + member5);
 
         //then
         assertThat(resultCount).isEqualTo(3);
