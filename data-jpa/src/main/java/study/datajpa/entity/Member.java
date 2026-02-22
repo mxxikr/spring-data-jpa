@@ -3,6 +3,7 @@ package study.datajpa.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+@NamedEntityGraph(name = "Member.all", attributeNodes = @NamedAttributeNode("team"))
 @Entity
 @Getter
 @Setter
