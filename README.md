@@ -34,25 +34,25 @@
    * 공통 인터페이스의 상속 구조 및 프록시를 통한 동적 구현체 생성 원리 파악
 
 
-4. [**쿼리 메소드 기능**]()
+4. [**쿼리 메소드 기능**](https://mxxikr.github.io/posts/spring-data-jpa-query-methods/)
    * 메소드 이름으로 쿼리 생성하는 관례 및 JPA NamedQuery 호출 방법
    * `@Query` 애노테이션을 활용한 리포지토리 내 인터페이스 직접 쿼리(엔티티, 값, DTO) 작성
    * 스프링 데이터 JPA의 `Page`, `Slice` 인터페이스를 활용한 페이징과 정렬 실무 활용법
    * 벌크성 수정 쿼리 시 주의점(영속성 컨텍스트 초기화) 및 `@EntityGraph`를 활용한 페치 조인(N+1 문제 해결) 실습
 
 
-5. [**확장 기능**]()
+5. [**확장 기능**](https://mxxikr.github.io/posts/spring-data-jpa-extensions/)
    * 인터페이스 설계의 한계를 극복하기 위한 사용자 정의 리포지토리 구현 전략
    * `@EnableJpaAuditing`을 이용한 엔티티의 생성일/수정일, 생성자/수정자 자동 관리
    * Web MVC 확장: HTTP 파라미터를 엔티티로 자동 변환하는 도메인 클래스 컨버터 및 전역 페이징/정렬 기본값 설정
 
 
-6. [**스프링 데이터 JPA 분석**]()
+6. [**스프링 데이터 JPA 분석**](https://mxxikr.github.io/posts/spring-data-jpa-analysis/)
    * 공통 인터페이스의 기본 구현체인 `SimpleJpaRepository`의 내부 구조와 `@Transactional` 동작 방식 분석
    * `save()` 메서드 호출 시 `persist`와 `merge`의 분기 로직 이해 및 `Persistable` 인터페이스를 활용한 새로운 엔티티 판별 최적화
 
 
-7. [**나머지 기능들**]()
+7. [**나머지 기능들**](https://mxxikr.github.io/posts/spring-data-jpa-remaining-features)
    * Specifications, Query By Example 등 부가 기능의 개념 및 실무 도입 시 복잡도 측면의 한계점 검토
    * Projections를 활용한 엔티티 대신 인터페이스나 DTO 기반의 부분 데이터 조회 기법
    * 네이티브 쿼리 적용 방법 및 제약 사항 확인
